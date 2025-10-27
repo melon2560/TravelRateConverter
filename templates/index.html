@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Rate Converter</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        input, select, button {
+            padding: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Travel Rate Converter</h1>
+        <form action="/convert" method="post">
+            <div>
+                <label for="amount">金額:</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+            <div>
+                <label for="from_currency">換算元:</label>
+                <select id="from_currency" name="from_currency">
+                    <option value="JPY">日本円 (JPY)</option>
+                    <option value="KRW">韓国ウォン (KRW)</option>
+                    <option value="SGD">シンガポールドル (SGD)</option>
+                </select>
+            </div>
+            <div>
+                <label for="to_currency">換算先:</label>
+                <select id="to_currency" name="to_currency">
+                    <option value="JPY">日本円 (JPY)</option>
+                    <option value="KRW">韓国ウォン (KRW)</option>
+                    <option value="SGD">シンガポールドル (SGD)</option>
+                </select>
+            </div>
+            <button type="submit">換算</button>
+        </form>
+        <div class="result" id="result">
+            {% if result %}
+                {{ result }}
+            {% else %}
+                <!-- 換算結果がここに表示されます -->
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
